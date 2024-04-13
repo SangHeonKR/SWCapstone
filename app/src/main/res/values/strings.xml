@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">SWcapstone</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">소프트웨어캡스톤</string>
+    <string name="title_search">검색</string>
+    <string name="title_community">커뮤니티</string>
+    <string name="title_myhome">마이페이지</string>
+    <string name="title_record">기록</string>
+    <string name="title_home">홈</string>
+    <string name="title_dashboard">대시보드</string>
 </resources>
