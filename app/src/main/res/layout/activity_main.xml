@@ -9,7 +9,7 @@
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF"
     android:hapticFeedbackEnabled="true"
-    tools:targetApi="34">
+    >
 
     <FrameLayout
         android:id="@+id/fragment_container"
