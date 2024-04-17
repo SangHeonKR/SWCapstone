@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "749592855743",
+    "project_id": "food-calorie-calculation-app",
+    "storage_bucket": "food-calorie-calculation-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749592855743:android:94e0a71d11284963f4320a",
+        "android_client_info": {
+          "package_name": "com.example.swcapstone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnqkXJ_bhVZ9lQOOugCZ2AgzkfVPhQ7KY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
