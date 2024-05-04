@@ -36,13 +36,13 @@ class LoginActivity : AppCompatActivity() {
                             finish()
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.makeText(baseContext, "인증에 실패 했습니다 올바른 패스워드와 아이디를 입력해주세요!",
                                 Toast.LENGTH_SHORT).show()
                         }
                     }
             } else {
                 // Prompt the user to enter credentials
-                Toast.makeText(baseContext, "Please enter Email/Password.",
+                Toast.makeText(baseContext, "이메일 혹은 패스워드를 입력해 주세요!",
                     Toast.LENGTH_SHORT).show()
             }
         }

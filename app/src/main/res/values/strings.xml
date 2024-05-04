@@ -12,4 +12,6 @@
     <string name="title_record">기록</string>
     <string name="title_home">홈</string>
     <string name="title_dashboard">대시보드</string>
+    <string name ="login_message">
+        "소프트웨어캡스톤디자인_곱창마카롱팀"</string>
 </resources>
