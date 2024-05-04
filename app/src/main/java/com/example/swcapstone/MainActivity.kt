@@ -2,6 +2,8 @@ package com.example.swcapstone
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -36,9 +38,15 @@ class MainActivity : AppCompatActivity() {
             // Redirect to Login Activity if not logged in
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
+            return
         }
-        
-        // 이 로그아웃은 현재로썬 아무런 기능을 하진 않음
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, MainScreenActivity::class.java))
+            finish()
+        }, 3000)  // 3000 milliseconds or 3 seconds
+
+
         logoutButton.setOnClickListener {
             auth.signOut()
             startActivity(Intent(this, LoginActivity::class.java))

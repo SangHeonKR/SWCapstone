@@ -58,7 +58,15 @@
         app:layout_constraintStart_toStartOf="@id/password"
         app:layout_constraintTop_toBottomOf="@id/password" />
 
-    <!-- 회원가입 버튼 -->
+    <!-- 좌상단 회원가입 링크 -->
+    <TextView
+        android:id="@+id/textViewRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No account? Register here"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/teal_200"
+        android:gravity="center_horizontal" />
 
     <!-- 비밀번호 찾기 버튼 -->
 
