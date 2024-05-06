@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="SangHeonKR"
+                    android:text="곱창마카롱 유저님"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <View
