@@ -54,13 +54,14 @@
             </LinearLayout>
 
             <!-- 목표 칼로리 서클 차트 -->
+
+            <!-- 최근 식단 정보 -->
             <WebView
                 android:id="@+id/chart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="10dp" />
 
-            <!-- 최근 식단 정보 -->
             <TextView
                 android:id="@+id/recentMealInfo"
                 android:layout_width="match_parent"

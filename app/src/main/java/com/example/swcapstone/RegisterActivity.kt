@@ -36,12 +36,12 @@ class RegisterActivity : AppCompatActivity() {
         val password = editTextPassword.text.toString().trim()
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Email and password must not be empty.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "이메일과 비밀번호는 비워둘 수 없습니다.", Toast.LENGTH_SHORT).show()
             return
         }
 
         if (password.length < 6) {
-            Toast.makeText(baseContext, "Password must be at least 6 characters long!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(baseContext, "암호의 길이는 6자 이상이어야 합니다!", Toast.LENGTH_SHORT).show()
             return // Stop further execution
         }
 
@@ -52,12 +52,12 @@ class RegisterActivity : AppCompatActivity() {
                     Log.d("Register", "createUserWithEmail:success")
                     val user = mAuth.currentUser
                     // Update UI or go to another Activity
-                    Toast.makeText(this@RegisterActivity, "Registration successful.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("Register", "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(this@RegisterActivity, "Registration failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "회원가입에 실패 하였습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
     }
