@@ -3,9 +3,9 @@
     <string name="login">Login</string>
     <string name="enter_password" >Password</string>
     <string name="enter_email" >Email</string>
-    <string name="welcome">Welcome!</string>
+    <string name="welcome">welcome</string>
     <string name="logout">Logout</string>
-    <string name="app_name" >곱창마카롱</string>
+    <string name="app_name" >  소프트웨어캡스톤_곱창마카롱</string>
     <string name="title_search">검색</string>
     <string name="title_community">커뮤니티</string>
     <string name="title_myhome">마이페이지</string>

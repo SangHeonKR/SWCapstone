@@ -10,19 +10,27 @@
         android:padding="16dp"
         android:gravity="center">
 
+        <!-- TextView 위에 ImageView 추가 -->
+        <ImageView
+            android:id="@+id/welcomeImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/welcome"
+            android:layout_marginBottom="20dp"/>
+
         <TextView
             android:id="@+id/welcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22sp"
             android:padding="20dp"
-            android:text="@string/welcome" />
+            android:text="환영합니다!" />
 
         <Button
             android:id="@+id/logoutButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/logout" />
+            android:text="로그아웃" />
 
     </LinearLayout>
 
