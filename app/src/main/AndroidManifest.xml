@@ -14,7 +14,7 @@
         android:theme="@style/Theme.SWcapstone"
         >
         <activity
-            android:name=".MainActivity"
+            android:name=".WelcomeActivity"
             android:exported="true">
 
         </activity>

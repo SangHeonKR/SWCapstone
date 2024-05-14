@@ -11,7 +11,7 @@ import com.example.swcapstone.R.id
 import com.example.swcapstone.R.layout
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivity : AppCompatActivity() {
+class WelcomeActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
