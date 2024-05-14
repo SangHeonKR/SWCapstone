@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             finish()
         }, 3000)  // 3000 milliseconds or 3 seconds
 
-
+        // 현 로그아웃 버튼의 위치를 다른 곳으로 옮길 예정
         logoutButton.setOnClickListener {
             auth.signOut()
             startActivity(Intent(this, LoginActivity::class.java))
