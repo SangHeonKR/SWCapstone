@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.swcapstone.R.id
@@ -22,7 +21,6 @@ class WelcomeActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         val welcomeText: TextView = findViewById(id.welcomeText)
-        val logoutButton: Button = findViewById(id.logoutButton)
 
         val currentUser = auth.currentUser
         if (currentUser != null) {
@@ -40,10 +38,5 @@ class WelcomeActivity : AppCompatActivity() {
         }, 3000)  // 3000 milliseconds or 3 seconds
 
 
-        logoutButton.setOnClickListener {
-            auth.signOut()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
     }
 }

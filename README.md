@@ -28,7 +28,7 @@
 <ul>
   <li>언어: Kotlin, Java, Python</li>
   <li>프레임워크: Android</li>
-  <li>데이터베이스: ?</li>
+  <li>데이터베이스: FireBase</li>
   <li>프론트엔드: Android Studio</li>
 </ul>
 
