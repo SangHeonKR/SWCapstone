@@ -24,9 +24,9 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:autofillHints=""
+        android:padding="10dp"
         android:background="@drawable/calendar_background"
-        android:hint="   [ID / E-Mail ]"
+        android:hint="[ID / E-Mail ]"
         android:backgroundTintMode="screen"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,14 +38,15 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:autofillHints=""
+        android:padding="10dp"
         android:background="@drawable/calendar_background"
-        android:hint="  [PW / Password]"
+        android:hint="[PW / Password]"
         android:backgroundTintMode="screen"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@id/email"
         app:layout_constraintStart_toStartOf="@id/email"
         app:layout_constraintTop_toBottomOf="@id/email" />
+
 
 
     <!-- 로그인 버튼 -->

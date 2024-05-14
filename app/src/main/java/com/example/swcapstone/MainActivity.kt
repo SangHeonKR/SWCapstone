@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            welcomeText.text = "Welcome, ${currentUser.email}"
+            welcomeText.text = "환영합니다. ${currentUser.email} 님"
         } else {
             // Redirect to Login Activity if not logged in
             startActivity(Intent(this, LoginActivity::class.java))

@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="화이트갈릭 피자"
+            android:text="Pizza"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
