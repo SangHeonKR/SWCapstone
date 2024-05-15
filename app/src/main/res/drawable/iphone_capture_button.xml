@@ -8,6 +8,6 @@
         android:width="2dp"
         android:color="#000000"/>
     <!-- 크기 설정 -->
-    <size android:width="100dp" android:height="100dp"/>
+    <size android:width="60dp" android:height="60dp"/>
 </shape>
 
