@@ -2,7 +2,6 @@ package com.example.swcapstone
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.swcapstone.R
 
 class RecordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
