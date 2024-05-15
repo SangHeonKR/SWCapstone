@@ -2,31 +2,34 @@ package com.example.swcapstone
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.os.Build
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
-import androidx.camera.video.Recorder
-import androidx.camera.video.Recording
-import androidx.camera.video.VideoCapture
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.swcapstone.databinding.ActivityCameraBinding
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-
 typealias LumaListener = (luma: Double) -> Unit
-
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityCameraBinding
 
     private var imageCapture: ImageCapture? = null
-
-    private var videoCapture: VideoCapture<Recorder>? = null
-    private var recording: Recording? = null
 
     private lateinit var cameraExecutor: ExecutorService
 
@@ -36,7 +39,7 @@ class CameraActivity : AppCompatActivity() {
         viewBinding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        //  Request camera permissions
+        // Request camera permissions
         if (allPermissionsGranted()) {
             startCamera()
         } else {
@@ -44,17 +47,14 @@ class CameraActivity : AppCompatActivity() {
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
 
-        //  Set up the listener for take photo and video capture
+        // Set up the listener for take photo
         viewBinding.imageCaptureButton.setOnClickListener { takePhoto() }
-        viewBinding.videoCaptureButton.setOnClickListener { captureVideo() }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
-
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults:
-        IntArray) {
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
@@ -68,13 +68,114 @@ class CameraActivity : AppCompatActivity() {
         }
     }
 
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+        cameraProviderFuture.addListener({
+            // Used to bind the lifecycle of cameras to the lifecycle owner
+            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
+            // Preview
+            val preview = Preview.Builder()
+                .build()
+                .also {
+                    it.setSurfaceProvider(viewBinding.viewFinder.surfaceProvider)
+                }
 
-    private fun takePhoto() {}
+            imageCapture = ImageCapture.Builder().build()
 
-    private fun captureVideo() {}
+            try {
+                // Unbind use cases before rebinding
+                cameraProvider.unbindAll()
 
-    private fun startCamera() {}
+                // Bind use cases to camera
+                cameraProvider.bindToLifecycle(
+                    this, CameraSelector.DEFAULT_BACK_CAMERA, preview, imageCapture)
+
+            } catch(exc: Exception) {
+                Log.e(TAG, "Use case binding failed", exc)
+            }
+
+        }, ContextCompat.getMainExecutor(this))
+    }
+
+    private fun takePhoto() {
+        val imageCapture = imageCapture ?: return
+
+        val photoFile = File(
+            getOutputDirectory(),
+            SimpleDateFormat(FILENAME_FORMAT, Locale.US)
+                .format(System.currentTimeMillis()) + ".jpg"
+        )
+
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+        imageCapture.takePicture(
+            outputOptions, ContextCompat.getMainExecutor(this), object : ImageCapture.OnImageSavedCallback {
+                override fun onError(exception: ImageCaptureException) {
+                    Log.e(TAG, "Photo capture failed: ${exception.message}", exception)
+                }
+
+                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    val savedUri = Uri.fromFile(photoFile)
+                    Log.d(TAG, "Photo capture succeeded: $savedUri")
+                    runOnUiThread {
+                        Toast.makeText(baseContext, "Photo Capture Succeeded: $savedUri", Toast.LENGTH_SHORT).show()
+                    }
+                    uploadImage(photoFile)
+                }
+            })
+    }
+
+    private fun uploadImage(file: File) {
+        val storageRef = FirebaseStorage.getInstance().reference
+        val fileRef = storageRef.child("images/${file.name}")
+        val uploadTask = fileRef.putFile(Uri.fromFile(file))
+
+        uploadTask.continueWithTask { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            fileRef.downloadUrl
+        }.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val downloadUri = task.result
+                val imageUrl = downloadUri.toString()
+
+                saveImageInfoToDatabase(imageUrl, file.name)
+            } else {
+                Toast.makeText(baseContext, "Upload failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun saveImageInfoToDatabase(imageUrl: String, fileName: String) {
+        val databaseRef = FirebaseDatabase.getInstance().getReference("images")
+        val imageId = databaseRef.push().key  // Unique ID for the image entry
+
+        val imageInfo = HashMap<String, Any>()
+        imageInfo["imageUrl"] = imageUrl
+        imageInfo["fileName"] = fileName
+        imageInfo["timestamp"] = ServerValue.TIMESTAMP
+
+        if (imageId != null) {
+            databaseRef.child(imageId).setValue(imageInfo)
+                .addOnSuccessListener {
+                    Toast.makeText(baseContext, "Image data saved to database", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(baseContext, "Failed to save data to database", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
+
+    private fun getOutputDirectory(): File {
+        val mediaDir = externalMediaDirs.firstOrNull()?.let {
+            File(it, resources.getString(R.string.app_name)).apply { mkdirs() }
+        }
+        return if (mediaDir != null && mediaDir.exists())
+            mediaDir else filesDir
+    }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
@@ -92,13 +193,8 @@ class CameraActivity : AppCompatActivity() {
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS =
             mutableListOf (
-                Manifest.permission.CAMERA,
-                Manifest.permission.RECORD_AUDIO
+                Manifest.permission.CAMERA
             ).apply {
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                    add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                }
             }.toTypedArray()
-
     }
 }
