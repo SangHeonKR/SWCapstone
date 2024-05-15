@@ -15,8 +15,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SWcapstone"
-        >
+        android:theme="@style/Theme.SWcapstone">
+
         <activity android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -45,8 +45,10 @@
             <!-- You can add intent filters here if this activity should respond to specific intents -->
         </activity>
         <activity android:name=".NavActivity"
-            android:exported="true"/>
-
+            android:exported="true">
+        </activity>
+        <activity android:name=".FoodRecordFragment"
+            android:exported="true">
+        </activity>
     </application>
-
 </manifest>
