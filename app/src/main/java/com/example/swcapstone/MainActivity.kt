@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.swcapstone.R
+import java.util.Locale
+import android.content.res.Configuration
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +17,12 @@ class MainActivity : AppCompatActivity() {
 
         val mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
+
+        val locale = Locale("ko")
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        resources.updateConfiguration(config, resources.displayMetrics)
 
         val navView: BottomNavigationView = findViewById(R.id.nav)
 
