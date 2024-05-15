@@ -62,8 +62,6 @@
         app:layout_constraintTop_toBottomOf="@id/password" />
 
 
-    <!-- 비밀번호 찾기 버튼 -->
-
     <Button
         android:id="@+id/textViewRegister"
         android:layout_width="0dp"
@@ -77,20 +75,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginButton" />
 
-    <Button
-        android:id="@+id/findPasswordButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/white"
-        android:text="비밀번호찾기"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toEndOf="@id/textViewRegister"
-        app:layout_constraintEnd_toStartOf="@id/findEmailButton"
-        app:layout_constraintTop_toBottomOf="@id/loginButton" />
 
     <!-- 이메일 찾기 버튼 -->
+
+    <!-- 비밀번호 찾기 버튼 -->
+
     <Button
         android:id="@+id/findEmailButton"
         android:layout_width="0dp"
@@ -98,10 +87,24 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/white"
         android:text="이메일 찾기"
-        android:textStyle="bold"
         android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/findPasswordButton"
         app:layout_constraintTop_toBottomOf="@id/loginButton" />
+
+    <Button
+        android:id="@+id/findPasswordButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/white"
+        android:text="비밀번호찾기"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/findEmailButton"
+        app:layout_constraintStart_toEndOf="@id/textViewRegister"
+        app:layout_constraintTop_toBottomOf="@id/loginButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,8 +17,12 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.swcapstone.databinding.ActivityCameraBinding
+import com.example.swcapstone.models.Photo
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ServerValue
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.text.SimpleDateFormat
@@ -89,7 +93,6 @@ class RecordFragment : Fragment() {
     }
 
     private fun uploadImage(file: File) {
-        // Similar to CameraActivity's implementation
         val storageRef = FirebaseStorage.getInstance().reference
         val fileRef = storageRef.child("images/${file.name}")
         val uploadTask = fileRef.putFile(Uri.fromFile(file))
@@ -108,22 +111,70 @@ class RecordFragment : Fragment() {
 
     private fun saveImageInfoToDatabase(imageUrl: String, fileName: String) {
         val databaseRef = FirebaseDatabase.getInstance().getReference("images")
-        val imageId = databaseRef.push().key
 
-        val imageInfo = HashMap<String, Any>()
-        imageInfo["imageUrl"] = imageUrl
-        imageInfo["fileName"] = fileName
-        imageInfo["timestamp"] = ServerValue.TIMESTAMP
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
 
-        if (imageId != null) {
-            databaseRef.child(imageId).setValue(imageInfo)
-                .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Image data saved to database", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Failed to save data to database", Toast.LENGTH_SHORT).show()
-                }
+
+        if (user != null) {
+            val userId = user.uid
+            val userImagesRef = databaseRef.child(userId)
+            val imageId = userImagesRef.push().key
+
+            if (imageId != null) {
+                val imageInfo = Photo(
+                    imageUrl = imageUrl,
+                    fileName = fileName,
+                    timestamp = System.currentTimeMillis()
+                )
+
+                userImagesRef.child(imageId).setValue(imageInfo)
+                    .addOnSuccessListener {
+                        Toast.makeText(requireContext(), "Image data saved to database", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(requireContext(), "Failed to save data to database", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        } else {
+            Log.e(TAG, "User not authenticated")
+            Toast.makeText(requireContext(), "User not authenticated", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun fetchUserPhotos() {
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        val databaseRef = FirebaseDatabase.getInstance().getReference("images")
+
+        if (user != null) {
+            val userId = user.uid
+            val userImageRef = databaseRef.child(userId)
+
+            userImageRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val photos = mutableListOf<Photo>()
+                        for (child in snapshot.children) {
+                            val photo = child.getValue(Photo::class.java)
+                            if (photo != null) {
+                                photos.add(photo)
+                            }
+                        }
+                        displayPhotos(photos)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e(TAG, "Failed to fetch user photos", error.toException())
+                    }
+
+                })
+        } else {
+            Log.e(TAG, "User not authenticated")
+        }
+    }
+
+    private fun displayPhotos(photos: List<Photo>) {
+        // Implement this function to handle the photos, e.g., display them in a RecyclerView
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
