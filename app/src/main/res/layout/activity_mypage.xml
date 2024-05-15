@@ -41,7 +41,8 @@
             <!-- 목표 칼로리 서클 차트 -->
 
             <!-- 최근 식단 정보 -->
-            <WebView
+
+            <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/chart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="oval">
-            <solid android:color="#FFFFFF"/>
-            <size android:width="100dp" android:height="100dp"/>
-            <stroke android:width="2dp" android:color="#CCCCCC"/>
-        </shape>
-    </item>
-</selector>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <!-- 흰 배경 적용 -->
+    <solid android:color="#FFFFFF"/>
+    <!-- 검정 테두리 적용 -->
+    <stroke
+        android:width="2dp"
+        android:color="#000000"/>
+    <!-- 크기 설정 -->
+    <size android:width="100dp" android:height="100dp"/>
+</shape>
+
