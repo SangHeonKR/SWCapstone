@@ -1,5 +1,6 @@
 package com.example.swcapstone
 
+import com.example.swcapstone.R
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
