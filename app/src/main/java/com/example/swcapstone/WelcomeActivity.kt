@@ -33,9 +33,9 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainScreenActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }, 3000)  // 3000 milliseconds or 3 seconds
+        }, 2000)  // 3000 milliseconds or 3 seconds
 
 
     }
