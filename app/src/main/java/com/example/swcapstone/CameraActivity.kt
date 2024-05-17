@@ -7,7 +7,7 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_save)
+        setContentView(R.layout.activity_camera)
         // Implement your camera functionality here
     }
 }

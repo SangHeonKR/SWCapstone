@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CalendarView
 import androidx.fragment.app.Fragment
 
@@ -26,6 +27,16 @@ class SearchFragment : Fragment() {
             startActivity(intent)
         }
 
+        // Find the cameraTestButton from activity_main layout
+        val cameraTestButton: Button = view.findViewById(R.id.cameraTest)
+        cameraTestButton.setOnClickListener {
+            // Navigate to RecordActivity when cameraTestButton is clicked
+            val intent = Intent(activity, RecordFragment::class.java)
+            startActivity(intent)
+        }
+
         return view
     }
 }
+
+

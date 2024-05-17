@@ -35,8 +35,10 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodImageView"/>
+        app:layout_constraintTop_toBottomOf="@+id/foodImageView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/underline"
