@@ -47,8 +47,7 @@
         <activity android:name=".NavActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".FoodRecordFragment"
-            android:exported="true">
-        </activity>
+        <activity android:name=".DetailActivity"
+            android:exported="true"/>
     </application>
 </manifest>

@@ -21,26 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 칼로리 텍스트 설명 -->
-
-    <!-- 칼로리 텍스트 -->
-
-    <!-- 캘린더 뷰 -->
-    <TextView
-        android:id="@+id/calorieText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="@color/blue"
-        android:padding="8dp"
-        android:text="360kcal kcal"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calorieTextLabel" />
-
     <TextView
         android:id="@+id/calorieTextLabel"
         android:layout_width="wrap_content"
@@ -55,13 +35,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <!-- 하단 네비게이션 바 -->
+    <TextView
+        android:id="@+id/calorieText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@color/blue"
+        android:padding="8dp"
+        android:text="360kcal"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calorieTextLabel" />
 
+    <!-- FragmentContainerView 추가 -->
     <CalendarView
-        android:id="@+id/calendarView"
+        android:id="@+id/cal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/calendar_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
