@@ -46,5 +46,11 @@
             android:layout_height="wrap_content"
             android:text="지방: 25g"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="당류: 19g"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 </LinearLayout>

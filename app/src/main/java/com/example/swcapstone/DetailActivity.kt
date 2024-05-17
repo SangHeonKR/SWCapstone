@@ -1,7 +1,9 @@
 package com.example.swcapstone
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
 import android.widget.TextView
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,5 +25,12 @@ class DetailActivity : AppCompatActivity() {
 
         val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.KOREA)
         dateTextView.text = dateFormat.format(calendar.time)
+
+        // Set up the button click listener to navigate to CameraActivity
+        val addButton: Button = findViewById(R.id.addButton)
+        addButton.setOnClickListener {
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

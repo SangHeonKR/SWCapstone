@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_record -> {
-                    loadFragment(RecordFragment())
+                    loadFragment(RecordPage())
                     return@setOnNavigationItemSelectedListener true
                 }
             }
