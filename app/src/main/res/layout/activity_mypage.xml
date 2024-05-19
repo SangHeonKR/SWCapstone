@@ -26,8 +26,6 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-
-
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
@@ -35,13 +33,11 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/mypage" />
-
             </LinearLayout>
 
             <!-- 목표 칼로리 서클 차트 -->
 
             <!-- 최근 식단 정보 -->
-
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/chart"
                 android:layout_width="match_parent"
@@ -66,8 +62,17 @@
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
                 android:padding="8dp"/>
+
             <include layout="@layout/food_record_item" />
 
+            <!-- 여기서 밑줄을 추가합니다 -->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/darker_gray" />
 
             <LinearLayout
                 android:id="@+id/llButtonsTop"
@@ -83,8 +88,6 @@
                     android:layout_height="70dp"
                     android:layout_weight="1"
                     android:src="@drawable/ic_kcal" />
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -96,5 +99,4 @@
                 android:layout_marginTop="16dp"/>
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

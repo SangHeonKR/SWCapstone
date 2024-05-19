@@ -18,6 +18,13 @@
         android:textSize="18dp"
         android:textStyle="bold" />
 
+    <ImageView
+        android:id="@+id/pig_image"
+        android:layout_width="wrap_content"
+        android:layout_height="385dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/pigcount" />
+
     <EditText
         android:id="@+id/goal_calories_input"
         android:layout_width="match_parent"
@@ -29,12 +36,12 @@
         android:textSize="16sp"/>
 
     <TextView
-        android:id="@+id/info_text"
+        android:id="@+id/goal_calories_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="총합이 10000 초과시 0이 됩니다."
-        android:textColor="#606060"/>
+        android:layout_marginTop="16dp"
+        android:textColor="#606060"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/save_button"

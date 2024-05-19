@@ -37,8 +37,9 @@ class MyHomeFragment : Fragment() {
 
     private fun updateCaloriesDisplay() {
         val prefs = requireActivity().getSharedPreferences("prefs", Context.MODE_PRIVATE)
-        val lastNumber = prefs.getInt("lastNumber", 0)  // 최신 저장된 값 불러오기
+        val lastNumber = prefs.getInt("lastNumber", 0)  // 최신 저장된 섭취 칼로리 값 불러오기
+        val goalCalories = prefs.getInt("goalCalories", 2000)  // 최신 저장된 목표 칼로리 값 불러오기
         val recentMealInfo = view?.findViewById<TextView>(R.id.recentMealInfo)
-        recentMealInfo?.text = "오늘의 섭취 칼로리: $lastNumber/2000"  // 예시로 2000이지만 수정 가능
+        recentMealInfo?.text = "오늘의 섭취 칼로리: $lastNumber / $goalCalories"
     }
 }
