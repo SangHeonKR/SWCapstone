@@ -27,6 +27,7 @@
 
     <!-- 다이어트 관련카페 이미지뷰 -->
     <ImageView
+        android:id="@+id/naverCafeImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/naver_cafe"
@@ -35,12 +36,12 @@
 
     <!-- 디스코드 서버 이미지뷰 -->
     <ImageView
+        android:id="@+id/discordImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/discord_image"
         android:layout_marginBottom="16dp"
         android:contentDescription="디스코드 서버로 연결되는 이미지"/>
-
 
     <!-- 추가문의 -->
     <TextView

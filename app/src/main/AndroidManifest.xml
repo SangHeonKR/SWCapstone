@@ -42,7 +42,6 @@
         </activity>
         <activity android:name=".MainActivity"
             android:exported="true">
-            <!-- You can add intent filters here if this activity should respond to specific intents -->
         </activity>
         <activity android:name=".NavActivity"
             android:exported="true">
@@ -53,5 +52,7 @@
             android:exported="true"/>
         <activity android:name=".RecordPage"
             android:exported="true"/>
+        <activity android:name=".NumberSettingActivity">
+        </activity>
     </application>
 </manifest>
