@@ -10,4 +10,7 @@
     <color name="darker_gray">#FF333333</color>
     <color name="blue">#FF6495ED</color>
     <color name="light_pink">#FFB6C1</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="orange">#FFA500</color>
 </resources>
