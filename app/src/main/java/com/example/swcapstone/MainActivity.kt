@@ -1,28 +1,21 @@
 package com.example.swcapstone
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.example.swcapstone.R
-import java.util.Locale
-import android.content.res.Configuration
+import com.google.firebase.auth.FirebaseAuth
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_start)
+        setContentView(R.layout.activity_start)  // activity_start.xml을 사용
 
         val mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
-
-        val locale = Locale("ko")
-        Locale.setDefault(locale)
-        val config = Configuration()
-        config.locale = locale
-        resources.updateConfiguration(config, resources.displayMetrics)
 
         val navView: BottomNavigationView = findViewById(R.id.nav)
 
@@ -41,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_record -> {
-                    loadFragment(RecordFragment())
+                    loadFragment(RecordPage())
                     return@setOnNavigationItemSelectedListener true
                 }
             }

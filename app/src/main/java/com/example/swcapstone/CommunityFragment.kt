@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 
 class CommunityFragment : Fragment() {
 
@@ -14,13 +15,16 @@ class CommunityFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // URL을 설정하고 Intent를 통해 브라우저를 엽니다.
-        val url = "https://m.cafe.naver.com/cantsb"
+        // 레이아웃 인플레이트 및 뷰 초기화
+        val view = inflater.inflate(R.layout.activity_blood, container, false)
+
+        return view
+    }
+
+    // URL을 열기 위한 메서드
+    private fun openUrl(url: String) {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(url)
         startActivity(intent)
-
-        // 레이아웃을 반환하지 않고 null을 반환합니다.
-        return null
     }
 }

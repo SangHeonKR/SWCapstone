@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import com.github.mikephil.charting.utils.ColorTemplate
 
 class ChartActivity : AppCompatActivity() {
 
@@ -16,48 +17,49 @@ class ChartActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_mypage)
 
-        // 차트 생성
-        chart = LineChart(this)
+        // XML에서 정의한 차트를 찾습니다
+        chart = findViewById(R.id.chart)
 
         // 차트 설정
         setupChart()
-
-        // 액티비티에 차트 설정
-        setContentView(chart)
     }
 
     private fun setupChart() {
         val entries = mutableListOf<Entry>()
-        entries.add(Entry(1f, 10f))
-        entries.add(Entry(2f, 30f))
+        entries.add(Entry(1f, 40f))
+        entries.add(Entry(2f, 15f))
         entries.add(Entry(3f, 30f))
-        entries.add(Entry(4f, 40f))
-        entries.add(Entry(5f, 50f))
+        entries.add(Entry(4f, 10f))
+        entries.add(Entry(5f, 5f))
 
-        val dataSet = LineDataSet(entries, "Label")
+        val dataSet = LineDataSet(entries, "전세계 인종 비율")
+        dataSet.colors = ColorTemplate.JOYFUL_COLORS.toList() // 다양한 색상 사용
+        dataSet.valueTextSize = 12f // 값의 텍스트 크기 설정
+
         val lineData = LineData(dataSet)
 
-        chart.data = lineData
-
-        // 차트 스타일 및 기타 설정
-        val description = Description()
-        description.text = "Chart Description"
-        chart.description = description
+        if (entries.isNotEmpty()) {
+            chart.data = lineData
+            chart.description.isEnabled = false // 설명 비활성화
+        } else {
+            val description = Description()
+            description.text = "데이터가 없습니다"
+            chart.description = description
+        }
 
         chart.setDrawGridBackground(false)
+        chart.animateX(1500) // X축 방향으로 애니메이션 적용
+        chart.invalidate() // 차트 갱신
 
-        chart.animateX(1500)
-        chart.invalidate()
-
-        // 선택된 값에 대한 리스너 설정
         chart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
             override fun onValueSelected(e: Entry?, h: Highlight?) {
-                // 값이 선택됐을 때의 동작 구현
+                // 선택된 값에 대한 처리
             }
 
             override fun onNothingSelected() {
-                // 아무 값도 선택되지 않았을 때의 동작 구현
+                // 선택 해제에 대한 처리
             }
         })
     }

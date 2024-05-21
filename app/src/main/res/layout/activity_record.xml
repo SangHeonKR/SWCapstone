@@ -67,8 +67,6 @@
             <!-- 각 기록 항목 -->
             <include layout="@layout/food_record_item" />
             <include layout="@layout/food_record_item" />
-            <include layout="@layout/food_record_item" />
-            <include layout="@layout/food_record_item" />
         </LinearLayout>
     </ScrollView>
 
