@@ -15,7 +15,7 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.activity_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
 
         val calendarView: CalendarView = view.findViewById(R.id.cal)
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
@@ -30,8 +30,7 @@ class SearchFragment : Fragment() {
         // Find the cameraTestButton from activity_main layout
         val cameraTestButton: Button = view.findViewById(R.id.cameraTest)
         cameraTestButton.setOnClickListener {
-            // Navigate to RecordActivity when cameraTestButton is clicked
-            val intent = Intent(activity, RecordFragment::class.java)
+            val intent = Intent(activity, CameraActivity::class.java)
             startActivity(intent)
         }
 
