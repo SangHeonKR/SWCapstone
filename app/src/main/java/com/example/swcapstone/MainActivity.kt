@@ -1,12 +1,10 @@
 package com.example.swcapstone
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_record -> {
-                    loadFragment(RecordPage())
+                    loadFragment(RecordFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
             }
