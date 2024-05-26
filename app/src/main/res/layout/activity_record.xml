@@ -45,17 +45,34 @@
                 android:layout_marginTop="40dp">
 
                 <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="210dp"
+                    android:layout_height="210dp"
                     android:background="@drawable/circle_background"
-                    android:src="@drawable/user" />
+                    android:src="@drawable/user"
+                    android:scaleType="centerInside" />
 
-                <TextView
+                <!-- TextView와 EditText를 겹치게 배치 -->
+                <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="곱창마카롱 유저님"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="사용자님"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <EditText
+                        android:id="@+id/nickname_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="사용자님"
+                        android:visibility="gone"
+                        android:inputType="text"
+                        android:imeOptions="actionDone" />
+                </FrameLayout>
 
                 <View
                     android:layout_width="match_parent"
