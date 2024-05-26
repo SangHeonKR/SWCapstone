@@ -16,7 +16,7 @@ class CommunityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // 레이아웃 인플레이트 및 뷰 초기화
-        val view = inflater.inflate(R.layout.activity_blood, container, false)
+        val view = inflater.inflate(R.layout.activity_community, container, false)
 
         return view
     }
