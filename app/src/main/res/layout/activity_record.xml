@@ -45,11 +45,12 @@
                 android:layout_marginTop="40dp">
 
                 <ImageView
-                    android:layout_width="210dp"
-                    android:layout_height="210dp"
-                    android:background="@drawable/circle_background"
+                    android:id="@+id/changeprofile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/user"
-                    android:scaleType="centerInside" />
+                    android:background="@drawable/circle_background"
+                    android:contentDescription="Profile Picture"/>
 
                 <!-- TextView와 EditText를 겹치게 배치 -->
                 <FrameLayout
@@ -82,8 +83,17 @@
             </LinearLayout>
 
             <!-- 각 기록 항목 -->
-            <include layout="@layout/food_record_item" />
-            <include layout="@layout/food_record_item" />
+            <include
+                layout="@layout/food_record_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" /> <!-- 첫 번째 include에 아래쪽 마진 추가 -->
+
+            <include
+                layout="@layout/food_record_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" /> <!-- 두 번째 include에 아래쪽 마진 추가 -->
         </LinearLayout>
     </ScrollView>
 
