@@ -1,15 +1,19 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="8dp"
     android:background="@android:color/darker_gray">
 
+    <!-- 음식 이미지 -->
     <ImageView
+        android:id="@+id/foodImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/pizza" /> <!-- 음식 이미지 리소스 -->
+        android:src="@drawable/pizza" />
 
+    <!-- 음식 정보 -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -17,40 +21,57 @@
         android:orientation="vertical"
         android:paddingStart="8dp">
 
+        <!-- 음식 이름 -->
         <TextView
+            android:id="@+id/foodNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="피자"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <!-- 열량, 단백질, 탄수화물, 지방, 당류 -->
         <TextView
+            android:id="@+id/caloriesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="열량: 600 KCAL"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
+            android:id="@+id/proteinTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="단백질: 201g"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
+            android:id="@+id/carbohydratesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="탄수화물: 50g"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
+            android:id="@+id/fatTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="지방: 25g"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
+            android:id="@+id/sugarTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="당류: 19g"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <!-- 섭취일 -->
+        <TextView
+            android:id="@+id/consumptionDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="섭취일 : 2024-05-26"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 </LinearLayout>
