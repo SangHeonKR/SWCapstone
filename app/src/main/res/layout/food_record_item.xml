@@ -11,7 +11,7 @@
         android:id="@+id/foodImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/pizza" />
+        android:src="@drawable/placeholder_image" />
 
     <!-- 음식 정보 -->
     <LinearLayout
@@ -26,7 +26,7 @@
             android:id="@+id/foodNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="피자"
+            android:text="Name"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <!-- 열량, 단백질, 탄수화물, 지방, 당류 -->
@@ -34,35 +34,35 @@
             android:id="@+id/caloriesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="열량: 600 KCAL"
+            android:text="열량: 0"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:id="@+id/proteinTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="단백질: 201g"
+            android:text="단백질: 0"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:id="@+id/carbohydratesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="탄수화물: 50g"
+            android:text="탄수화물: 0"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:id="@+id/fatTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="지방: 25g"
+            android:text="지방: 0"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:id="@+id/sugarTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="당류: 19g"
+            android:text="당류: 0"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <!-- 섭취일 -->
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:text="섭취일 : 2024-05-26"
+            android:text="섭취일 : 0"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 </LinearLayout>

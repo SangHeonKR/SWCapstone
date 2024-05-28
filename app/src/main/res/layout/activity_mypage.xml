@@ -35,22 +35,21 @@
                     android:src="@drawable/mypage" />
             </LinearLayout>
 
-            <!-- 목표 칼로리 서클 차트 -->
-
-            <!-- 최근 식단 정보 -->
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/chart"
+            <!-- ImageView 추가 -->
+            <ImageView
+                android:id="@+id/foodImageView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginTop="30dp" />
+                android:layout_marginTop="30dp"
+                android:src="@drawable/placeholder_image" /> <!-- 샘플 이미지를 설정하세요 -->
 
             <TextView
-                android:id="@+id/recentMealInfo"
+                android:id="@+id/goalCaloriesDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:text="[오늘의 섭취 칼로리: 1564/2000]"
+                android:text=""
                 android:background="@drawable/backdisplay"
                 android:textColor="@color/white"
                 android:textAppearance="?attr/textAppearanceBody1" />
@@ -63,10 +62,15 @@
                 android:textColor="@android:color/black"
                 android:padding="8dp"/>
 
-            <include layout="@layout/food_record_item" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/foodRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:scrollbars="vertical" />
 
             <!-- 여기서 밑줄을 추가합니다 -->
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
