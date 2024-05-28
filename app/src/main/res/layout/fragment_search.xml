@@ -42,7 +42,7 @@
         android:layout_marginTop="4dp"
         android:background="@color/blue"
         android:padding="8dp"
-        android:text="360kcal"
+        android:text="100kcal"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

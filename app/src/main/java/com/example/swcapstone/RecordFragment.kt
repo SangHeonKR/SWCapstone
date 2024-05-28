@@ -3,10 +3,17 @@ package com.example.swcapstone
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
+import android.graphics.RectF
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
@@ -21,8 +28,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.swcapstone.models.Photo
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -33,6 +48,10 @@ class RecordFragment : Fragment() {
     private lateinit var nicknameEditText: EditText
     private lateinit var changeProfileImageView: ImageView
     private lateinit var galleryLauncher: ActivityResultLauncher<Intent>
+
+    private lateinit var photoAdapter: FoodItemAdapter
+    private lateinit var photoRecyclerView: RecyclerView
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     companion object {
         private const val PREFS_NAME = "com.example.swcapstone.prefs"
@@ -105,6 +124,27 @@ class RecordFragment : Fragment() {
             openGallery()
         }
 
+        // Initialize RecyclerView and adapter
+        photoRecyclerView = view.findViewById(R.id.foodRecyclerView)
+        photoAdapter = FoodItemAdapter(ArrayList(), R.layout.food_record_item)
+
+
+        // Set up RecyclerView with LinearLayoutManager
+        photoRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = photoAdapter
+        }
+
+        // Initialize SwipeRefreshLayout
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout)
+        swipeRefreshLayout.setOnRefreshListener {
+            // Refresh data when the user swipes
+            fetchUserPhotos()
+        }
+
+        // Fetch and display user photos
+        fetchUserPhotos()
+
         return view
     }
 
@@ -171,6 +211,39 @@ class RecordFragment : Fragment() {
             val drawable: Drawable = BitmapDrawable(resources, bitmap)
             changeProfileImageView.setImageDrawable(null) // 기본 이미지를 숨깁니다
             changeProfileImageView.background = drawable
+        }
+    }
+
+    private fun fetchUserPhotos() {
+        val auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        val databaseRef = FirebaseDatabase.getInstance().getReference("images")
+
+        user?.let { currentUser ->
+            val userId = currentUser.uid
+            val userImageRef = databaseRef.child(userId)
+
+            userImageRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val photos = mutableListOf<Photo>()
+                    for (child in snapshot.children) {
+                        val photo = child.getValue(Photo::class.java)
+                        photo?.let {
+                            photos.add(photo)
+                        }
+                    }
+                    // Update RecyclerView with fetched photos
+                    photoAdapter.updateData(photos)
+                    // Hide the refresh indicator
+                    swipeRefreshLayout.isRefreshing = false
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle database error
+                    // Hide the refresh indicator
+                    swipeRefreshLayout.isRefreshing = false
+                }
+            })
         }
     }
 }

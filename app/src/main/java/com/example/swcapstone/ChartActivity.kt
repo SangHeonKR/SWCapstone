@@ -20,7 +20,7 @@ class ChartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_mypage)
 
         // XML에서 정의한 차트를 찾습니다
-        chart = findViewById(R.id.chart)
+        //chart = findViewById(R.id.chart)
 
         // 차트 설정
         setupChart()
