@@ -21,23 +21,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- "오늘 섭취한 칼로리" 텍스트 -->
+
+    <!-- 칼로리 값 텍스트 -->
+
+    <!-- FragmentContainerView 추가 -->
+
     <TextView
         android:id="@+id/calorieTextLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="오늘 섭취한 칼로리"
-        android:textStyle="bold|normal"
         android:textColor="#000000"
         android:textSize="14sp"
+        android:textStyle="bold|normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintWidth_default="wrap" />
 
     <TextView
         android:id="@+id/calorieText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@color/blue"
@@ -46,11 +53,11 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintHorizontal_bias="0.918"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calorieTextLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/calorieTextLabel"
+        app:layout_constraintWidth_default="wrap" />
 
-    <!-- FragmentContainerView 추가 -->
     <CalendarView
         android:id="@+id/cal"
         android:layout_width="match_parent"
@@ -62,15 +69,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calorieText" />
 
-    <!-- 카메라 테스트 버튼 -->
-    <Button
-        android:id="@+id/cameraTest"
+    <!-- 하단 텍스트 -->
+    <TextView
+        android:id="@+id/footerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="개발용 카메라 테스트"
         android:layout_marginTop="16dp"
+        android:text="Software Capstone Design\nDevelopment of Gobchang Macaron Team"
+        android:textColor="#FFFFFF"
+        android:background="#6A5ACD"
+        android:padding="12dp"
+        android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@id/cal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
